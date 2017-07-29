@@ -4,12 +4,12 @@ Gem::Specification.new do |s|
   s.name        = 'foreman_cfssl'
   s.version     = ForemanCfssl::VERSION
   s.license     = 'GPL-3.0'
-  s.authors     = ['TODO: Your name']
-  s.email       = ['TODO: Your email']
-  s.homepage    = 'TODO'
-  s.summary     = 'TODO: Summary of ForemanCfssl.'
+  s.authors     = ['Qingbo Zhou']
+#  s.email       = ['TODO: Your email']
+  s.homepage    = 'http://thinlight.org/'
+  s.summary     = 'Foreman CFSSL plugin'
   # also update locale/gemspec.rb
-  s.description = 'TODO: Description of ForemanCfssl.'
+  s.description = 'A Foreman plugin that uses CFSSL to generate certificates'
 
   s.files = Dir['{app,config,db,lib,locale}/**/*'] + ['LICENSE', 'Rakefile', 'README.md']
   s.test_files = Dir['test/**/*']
