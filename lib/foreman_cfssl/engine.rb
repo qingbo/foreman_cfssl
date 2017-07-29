@@ -28,10 +28,10 @@ module ForemanCfssl
 
         # add menu entry
         menu :top_menu, :template,
-             url_hash: { controller: :'foreman_cfssl/hosts', action: :new_action },
-             caption: 'ForemanCfssl',
-             parent: :hosts_menu,
-             after: :hosts
+             url_hash: { controller: :'foreman_cfssl/certs', action: :index },
+             caption: 'Certificates',
+             parent: :infrastructure_menu,
+             after: :smart_proxies
 
         # add dashboard widget
         widget 'foreman_cfssl_widget', name: N_('Foreman plugin template widget'), sizex: 4, sizey: 1
