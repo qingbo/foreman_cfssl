@@ -1,0 +1,9 @@
+<h2>Import Certificate</h2>
+
+<%= form_for(@cert, url: {controller: 'foreman_cfssl/certs', action: 'create'}) do |f| %>
+<div><%= f.text_field :owner_email %> Owner email</div>
+<div><%= f.text_area :pem, size: "80x20" %>Certificate pem</div>
+<div><%= f.text_area :key, size: "80x20" %>Certificate private key</div>
+
+<div><%= f.submit 'Import' %></div>
+<% end %>
