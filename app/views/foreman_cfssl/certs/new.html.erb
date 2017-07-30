@@ -7,5 +7,5 @@
 <%= select_f f, :profile, @profiles, :to_s, :to_s %>
 <%= textarea_f f, :hosts, {rows: 5} %>
 
-<div><%= submit_or_cancel f, args: {cancel_path: index_path} %></div>
+<div><%= f.submit 'Generate', class: 'btn btn-primary' %></div>
 <% end %>

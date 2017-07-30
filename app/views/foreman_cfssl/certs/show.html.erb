@@ -22,11 +22,11 @@
     </tr>
     <tr>
       <td>Subject</td>
-      <td><%= JSON.pretty_generate(JSON.parse(@cert.subject)) %></td>
+      <td><pre><%= JSON.pretty_generate(JSON.parse(@cert.subject)) %></pre></td>
     </tr>
     <tr>
       <td>Issuer</td>
-      <td><%= JSON.pretty_generate(JSON.parse(@cert.issuer)) %></td>
+      <td><pre><%= JSON.pretty_generate(JSON.parse(@cert.issuer)) %></pre></td>
     </tr>
     <tr>
       <td>Serial number</td>
@@ -34,7 +34,7 @@
     </tr>
     <tr>
       <td>SANs</td>
-      <td><%= JSON.pretty_generate(JSON.parse(@cert.sans)) %></td>
+      <td><pre><%= JSON.pretty_generate(JSON.parse(@cert.sans)) %></pre></td>
     </tr>
     <tr>
       <td>Valid not before</td>
@@ -58,11 +58,11 @@
     </tr>
     <tr>
       <td>Certificate</td>
-      <td><%= @cert.pem %></td>
+      <td><pre><%= @cert.pem %></pre></td>
     </tr>
     <tr>
       <td>Key</td>
-      <td><%= @cert.key %></td>
+      <td><pre><%= @cert.key %></pre></td>
     </tr>
   </tbody>
 </table>
