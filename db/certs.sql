@@ -1,5 +1,6 @@
 create table certs (
   id serial primary key,
+  user_id integer,
   owner_email varchar(255),
   imported_at timestamp,
   profile varchar(255),

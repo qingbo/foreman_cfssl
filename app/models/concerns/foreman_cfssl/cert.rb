@@ -1,5 +1,6 @@
 module ForemanCfssl
   class Cert < ActiveRecord::Base
+    belongs_to :user
     # quick hack to ease form submission
     attr_accessor :common_name, :hosts
 

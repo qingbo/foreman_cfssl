@@ -7,7 +7,8 @@ link_to("Import", import_path, class: "btn btn-primary") %>
   <thead>
     <tr>
       <th>ID</th>
-      <th>Source</th>
+      <th>User</th>
+      <th>Author</th>
       <th>Owner</th>
       <th>Common Name</th>
       <th>SANs</th>
@@ -22,6 +23,7 @@ link_to("Import", import_path, class: "btn btn-primary") %>
        <% if cert.expiring? %>background-color: #c33; color: #fff;<% end %>
       ">
         <td><%= cert.id %></td>
+        <td><%= cert.user.name %></td>
         <td><%= cert.source_type %></td>
         <td><%= cert.owner_email %></td>
         <td><%= cert.subject_info['common_name'] %></td>
