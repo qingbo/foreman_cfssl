@@ -19,3 +19,5 @@ create table certs (
 create index index_certs_owner_email on certs (owner_email);
 create index index_certs_not_after on certs (not_after);
 create index index_certs_authority_key_id on certs (authority_key_id);
+
+rnCMfy5BFhRpcZ7KgGFHFX6uch7VmH8P
