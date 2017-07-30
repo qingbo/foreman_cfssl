@@ -35,7 +35,7 @@ link_to("Import", import_path, class: "btn btn-primary") %>
         </td>
         <td><%= cert.issuer_info['common_name'] %></td>
         <td><%= cert.not_after %></td>
-        <td><%= cert.id %></td>
+        <td><%= link_to 'show', cert %></td>
       </tr>
     <% end %>
   </tbody>

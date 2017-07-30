@@ -17,7 +17,7 @@ module ForemanCfssl
     end
 
     def source_type
-      imported_at ? "Imported" : "Generated"
+      imported_at ? "imported" : "generated"
     end
 
     def expired?

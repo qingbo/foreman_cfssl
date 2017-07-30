@@ -1,0 +1,68 @@
+<h2>Certificate details</h2>
+
+<table class="<%= table_css_classes 'table-fixed' %>">
+  <thead>
+    <tr>
+      <th width="100px">Field</th>
+      <th>Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>User</td>
+      <td><%= @cert.user.name %></td>
+    </tr>
+    <tr>
+      <td>Owner</td>
+      <td><%= @cert.owner_email %></td>
+    </tr>
+    <tr>
+      <td>Profile</td>
+      <td><%= @cert.profile %></td>
+    </tr>
+    <tr>
+      <td>Subject</td>
+      <td><%= JSON.pretty_generate(JSON.parse(@cert.subject)) %></td>
+    </tr>
+    <tr>
+      <td>Issuer</td>
+      <td><%= JSON.pretty_generate(JSON.parse(@cert.issuer)) %></td>
+    </tr>
+    <tr>
+      <td>Serial number</td>
+      <td><%= @cert.serial_number %></td>
+    </tr>
+    <tr>
+      <td>SANs</td>
+      <td><%= JSON.pretty_generate(JSON.parse(@cert.sans)) %></td>
+    </tr>
+    <tr>
+      <td>Valid not before</td>
+      <td><%= @cert.not_before %></td>
+    </tr>
+    <tr>
+      <td>Valid not after</td>
+      <td><%= @cert.not_after %></td>
+    </tr>
+    <tr>
+      <td>SigAlg</td>
+      <td><%= @cert.sigalg %></td>
+    </tr>
+    <tr>
+      <td>CA key ID</td>
+      <td><%= @cert.authority_key_id %></td>
+    </tr>
+    <tr>
+      <td>Key ID</td>
+      <td><%= @cert.subject_key_id %></td>
+    </tr>
+    <tr>
+      <td>Certificate</td>
+      <td><%= @cert.pem %></td>
+    </tr>
+    <tr>
+      <td>Key</td>
+      <td><%= @cert.key %></td>
+    </tr>
+  </tbody>
+</table>

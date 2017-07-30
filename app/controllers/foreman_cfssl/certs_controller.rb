@@ -62,7 +62,7 @@ module ForemanCfssl
     end
 
     def show
-
+      @cert = Cert.find(params[:id])
     end
 
     def expand_pem
