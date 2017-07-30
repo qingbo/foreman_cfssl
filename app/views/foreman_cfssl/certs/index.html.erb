@@ -6,14 +6,14 @@ link_to("Import", import_path, class: "btn btn-primary") %>
 <table class="<%= table_css_classes 'table-fixed' %>">
   <thead>
     <tr>
-      <th>ID</th>
       <th>User</th>
-      <th>Author</th>
+      <th>Source</th>
       <th>Owner</th>
       <th>Common Name</th>
       <th>SANs</th>
       <th>Issuer</th>
       <th><%= sort :not_after, :as => "Invalid After" %></th>
+      <th>Actions</th>
     </tr>
   </thead>
   <tbody>
@@ -22,7 +22,6 @@ link_to("Import", import_path, class: "btn btn-primary") %>
        <% if cert.expired? %>text-decoration: line-through;<% end %>
        <% if cert.expiring? %>background-color: #c33; color: #fff;<% end %>
       ">
-        <td><%= cert.id %></td>
         <td><%= cert.user.name %></td>
         <td><%= cert.source_type %></td>
         <td><%= cert.owner_email %></td>
@@ -36,6 +35,7 @@ link_to("Import", import_path, class: "btn btn-primary") %>
         </td>
         <td><%= cert.issuer_info['common_name'] %></td>
         <td><%= cert.not_after %></td>
+        <td><%= cert.id %></td>
       </tr>
     <% end %>
   </tbody>
