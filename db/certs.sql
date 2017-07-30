@@ -2,6 +2,7 @@ create table certs (
   id serial primary key,
   owner_email varchar(255),
   imported_at timestamp,
+  profile varchar(255),
   subject text,
   issuer text,
   serial_number varchar(255),
@@ -12,8 +13,7 @@ create table certs (
   authority_key_id varchar(255),
   subject_key_id varchar(255),
   pem text not null,
-  key text,
-  key_receipients text
+  key text
 );
 
 create index index_certs_owner_email on certs (owner_email);
