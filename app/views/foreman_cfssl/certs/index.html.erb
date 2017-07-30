@@ -10,7 +10,7 @@ link_to("Import", import_path, class: "btn btn-primary") %>
       <th>Common Name</th>
       <th>SANs</th>
       <th>Issuer</th>
-      <th>Invalid After</th>
+      <th><%= sort :not_after, :as => "Invalid After" %></th>
     </tr>
   </thead>
   <tbody>
