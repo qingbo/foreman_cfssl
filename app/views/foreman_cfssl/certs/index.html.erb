@@ -6,6 +6,8 @@ link_to("Import", import_path, class: "btn btn-primary") %>
 <table class="<%= table_css_classes 'table-fixed' %>">
   <thead>
     <tr>
+      <th>ID</th>
+      <th>Source</th>
       <th>Owner</th>
       <th>Common Name</th>
       <th>SANs</th>
@@ -15,7 +17,12 @@ link_to("Import", import_path, class: "btn btn-primary") %>
   </thead>
   <tbody>
     <% @certs.each do |cert| %>
-      <tr>
+      <tr style="
+       <% if cert.expired? %>text-decoration: line-through;<% end %>
+       <% if cert.expiring? %>background-color: #c33; color: #fff;<% end %>
+      ">
+        <td><%= cert.id %></td>
+        <td><%= cert.source_type %></td>
         <td><%= cert.owner_email %></td>
         <td><%= cert.subject_info['common_name'] %></td>
         <td>

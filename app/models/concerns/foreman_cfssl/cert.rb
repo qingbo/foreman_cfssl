@@ -14,5 +14,17 @@ module ForemanCfssl
     def sans_info
       JSON.parse(sans)
     end
+
+    def source_type
+      imported_at ? "Imported" : "Generated"
+    end
+
+    def expired?
+      not_after < Time.now
+    end
+
+    def expiring?
+      not_after < Time.now + 30.days && ! expired?
+    end
   end
 end

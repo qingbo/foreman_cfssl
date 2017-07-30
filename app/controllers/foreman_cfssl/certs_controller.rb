@@ -4,7 +4,7 @@ module ForemanCfssl
   require 'json'
   class CertsController < ApplicationController
     def index
-      @certs = Cert.all.paginate(:page => params[:page]).order(params[:order]) 
+      @certs = Cert.all.paginate(:page => params[:page]).order(params[:order])
     end
 
     def import
@@ -62,6 +62,7 @@ module ForemanCfssl
     end
 
     def show
+
     end
 
     def expand_pem
@@ -70,7 +71,7 @@ module ForemanCfssl
       @cert.subject = JSON.dump(cert_info['subject'])
       @cert.issuer = JSON.dump(cert_info['issuer'])
       @cert.serial_number = cert_info['serial_number']
-      @cert.sans = JSON.dump(cert_info['sans']) # TODO handle empty string
+      @cert.sans = cert_info.has_key?('sans') ? JSON.dump(cert_info['sans']) : '[]'
       @cert.not_before = DateTime.parse(cert_info['not_before'])
       @cert.not_after = DateTime.parse(cert_info['not_after'])
       @cert.sigalg = cert_info['sigalg']
