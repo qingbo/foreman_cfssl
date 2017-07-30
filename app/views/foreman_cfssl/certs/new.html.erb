@@ -1,0 +1,11 @@
+<h2>Generate Certificate</h2>
+
+<%= form_for(@cert, url: {controller: 'foreman_cfssl/certs', action: 'create'}) do |f| %>
+
+<%= text_f f, :owner_email, :help_inline => "Who own's this certificate" %>
+<%= text_f f, :common_name %>
+<%= select_f f, :profile, @profiles, :to_s, :to_s %>
+<%= textarea_f f, :hosts, {rows: 5} %>
+
+<div><%= submit_or_cancel f, args: {cancel_path: index_path} %></div>
+<% end %>
