@@ -1,1 +1,34 @@
-Certificate list page <%= @list %>
+<% title _("Certificates") %>
+
+<% title_actions link_to(_("Import Certificate"), import_path) %>
+
+<table class="<%= table_css_classes 'table-fixed' %>">
+  <thead>
+    <tr>
+      <th>Owner</th>
+      <th>Common Name</th>
+      <th>SANs</th>
+      <th>Issuer</th>
+      <th>Invalid After</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @certs.each do |cert| %>
+      <tr>
+        <td><%= cert.owner_email %></td>
+        <td><%= cert.subject_info['common_name'] %></td>
+        <td>
+          <ul>
+            <% cert.sans_info.each do |san| %>
+            <li><%= san %></li>
+            <% end %>
+          </ul>
+        </td>
+        <td><%= cert.issuer_info['common_name'] %></td>
+        <td><%= cert.not_after %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= will_paginate_with_info @certs, :more => " - "+_("<b class='select_count'>0</b> selected") %>
