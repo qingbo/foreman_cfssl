@@ -20,11 +20,12 @@ module ForemanCfssl
 
         # Add permissions
         security_block :foreman_cfssl do
-          permission :view_foreman_cfssl, :'foreman_cfssl/hosts' => [:new_action]
+          permission :admin_foreman_cfssl, :'foreman_cfssl/certs' => [
+            :index, :import, :import_save, :new, :create, :show, :destroy]
         end
 
         # Add a new role called 'Discovery' if it doesn't exist
-        role 'ForemanCfssl', [:view_foreman_cfssl]
+        role 'ForemanCFSSL', [:admin_foreman_cfssl]
 
         # add menu entry
         menu :top_menu, :template,
