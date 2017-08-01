@@ -1,4 +1,9 @@
-<h2>Certificate details</h2>
+<% title "Certificates - Details" %>
+
+<% title_actions link_to("Back", index_path, class: "btn btn-default"),
+link_to("Delete", @cert, method: 'delete',
+data: {confirm: '!!! Do you want to delete this from database?'}, class: "btn btn-danger")
+ %>
 
 <table class="<%= table_css_classes 'table-fixed' %>">
   <thead>

@@ -1,4 +1,6 @@
-<h2>Import Certificate</h2>
+<% title "Certificates - Import" %>
+
+<% title_actions link_to("Back", index_path, class: "btn btn-default") %>
 
 <%= form_for(@cert, url: {controller: 'foreman_cfssl/certs', action: 'import_save'}) do |f| %>
 <%= text_f f, :owner_email, :help_inline => "Who own's this certificate? For reference only." %>

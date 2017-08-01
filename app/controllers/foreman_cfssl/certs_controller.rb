@@ -5,7 +5,7 @@ module ForemanCfssl
   class CertsController < ApplicationController
     def index
       order = params[:order] || 'not_after DESC'
-      @certs = Cert.all.paginate(:page => params[:page]).order(params[:order])
+      @certs = Cert.all.paginate(:page => params[:page]).order(order)
     end
 
     def import
@@ -28,7 +28,8 @@ module ForemanCfssl
       self.expand_pem
 
       if @cert.save
-        redirect_to certs_path
+        flash[:notice] = "Successfully imported certificate"
+        redirect_to @cert
       else
         render 'import'
       end
@@ -76,7 +77,8 @@ module ForemanCfssl
       self.expand_pem
 
       if @cert.save
-        redirect_to certs_path
+        flash[:notice] = "Successfully issued certificate for #{@cert.common_name}"
+        redirect_to @cert
       else
         render 'new'
       end
@@ -84,6 +86,14 @@ module ForemanCfssl
 
     def show
       @cert = Cert.find(params[:id])
+    end
+
+    def destroy
+      @cert = Cert.find(params[:id])
+      @cert.destroy
+
+      flash[:notice] = "Certificate deleted"
+      redirect_to certs_path
     end
 
     def expand_pem

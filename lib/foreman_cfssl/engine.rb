@@ -54,16 +54,6 @@ module ForemanCfssl
       SETTINGS[:foreman_cfssl] = { assets: { precompile: assets_to_precompile } }
     end
 
-    # Include concerns in this config.to_prepare block
-    config.to_prepare do
-      begin
-        Host::Managed.send(:include, ForemanCfssl::HostExtensions)
-        HostsHelper.send(:include, ForemanCfssl::HostsHelperExtensions)
-      rescue => e
-        Rails.logger.warn "ForemanCfssl: skipping engine hook (#{e})"
-      end
-    end
-
     rake_tasks do
       Rake::Task['db:seed'].enhance do
         ForemanCfssl::Engine.load_seed

@@ -1,4 +1,6 @@
-<h2>Generate Certificate</h2>
+<% title "Certificates - Issue New" %>
+
+<% title_actions link_to("Back", index_path, class: "btn btn-default") %>
 
 <%= form_for(@cert, url: {controller: 'foreman_cfssl/certs', action: 'create'}) do |f| %>
 
@@ -10,5 +12,5 @@
 <p>Signing CA:</p>
 <pre><%= @ca_info %></pre>
 
-<div><%= f.submit 'Generate', class: 'btn btn-primary' %></div>
+<div><%= f.submit 'Issue Certificate', class: 'btn btn-primary' %></div>
 <% end %>
