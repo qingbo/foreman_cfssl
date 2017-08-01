@@ -25,7 +25,7 @@ module ForemanCfssl
         end
 
         # Add a new role called 'Discovery' if it doesn't exist
-        role 'ForemanCFSSL', [:admin_foreman_cfssl]
+        role 'CFSSL', [:admin_foreman_cfssl]
 
         # add menu entry
         menu :top_menu, :template,
