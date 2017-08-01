@@ -34,7 +34,7 @@ module ForemanCfssl
              after: :smart_proxies
 
         # add dashboard widget
-        widget 'foreman_cfssl_widget', name: N_('Foreman plugin template widget'), sizex: 4, sizey: 1
+        #widget 'foreman_cfssl_widget', name: 'Foreman CFSSL', sizex: 4, sizey: 1
       end
     end
 
