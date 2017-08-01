@@ -4,6 +4,7 @@ module ForemanCfssl
   require 'json'
   class CertsController < ApplicationController
     def index
+      order = params[:order] || 'not_after DESC'
       @certs = Cert.all.paginate(:page => params[:page]).order(params[:order])
     end
 
