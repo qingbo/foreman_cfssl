@@ -1,9 +1,11 @@
 <h2>Import Certificate</h2>
 
 <%= form_for(@cert, url: {controller: 'foreman_cfssl/certs', action: 'import_save'}) do |f| %>
-<%= text_f f, :owner_email %>
-<%= textarea_f f, :pem, {rows: 20} %>
-<%= textarea_f f, :key, {rows: 20} %>
+<%= text_f f, :owner_email, :help_inline => "Who own's this certificate? For reference only." %>
+<%= textarea_f f, :pem, {rows: 20, help_inline: "Certificate signed by CA"} %>
+<%= textarea_f f, :key, {rows: 20, help_inline:
+@private_key_import ? "It's recommended to upload an encrypted version of the private key."
+                    : "Private key upload is disallowed. Leave it blank or upload an encrypted one."} %>
 
 <div><%= f.submit 'Import', class: 'btn btn-primary' %></div>
 <% end %>

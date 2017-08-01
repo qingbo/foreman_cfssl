@@ -2,10 +2,13 @@
 
 <%= form_for(@cert, url: {controller: 'foreman_cfssl/certs', action: 'create'}) do |f| %>
 
-<%= text_f f, :owner_email, :help_inline => "Who own's this certificate" %>
-<%= text_f f, :common_name %>
-<%= select_f f, :profile, @profiles, :to_s, :to_s %>
-<%= textarea_f f, :hosts, {rows: 5} %>
+<%= text_f f, :owner_email, :help_inline => "Who own's this certificate? For reference only. Not used in generation." %>
+<%= text_f f, :common_name, :help_inline => "Name of the subject"  %>
+<%= select_f f, :profile, @profiles, :to_s, :to_s, :help_inline => "A profile configured in CFSSL" %>
+<%= textarea_f f, :hosts, {rows: 5, help_inline: "List of domain names the subject will be serving"} %>
+
+<p>Signing CA:</p>
+<pre><%= @ca_info %></pre>
 
 <div><%= f.submit 'Generate', class: 'btn btn-primary' %></div>
 <% end %>
