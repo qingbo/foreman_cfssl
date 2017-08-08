@@ -1,6 +1,6 @@
 ## foreman_cfssl
 
-A Foreman plugin that uses CFSSL to generate certificates, plus a little management.
+A Foreman plugin that uses CFSSL to generate certificates, plus a little management. It adds a "Certificates" sub-item to "Infrastructure" menu.
 
 ### Warning
 
@@ -10,18 +10,88 @@ If you do want to put valuable certificate keys into the system, consider:
 
 * Secure the CFSSL role in Foreman
 * Secure the database Foreman connects
-* Be alert about Rails/Foreman vulnerabilities
+* Be aware about Rails/Foreman vulnerabilities
 
 ### Prerequisites
 
-CFSSL
+[CFSSL](https://github.com/cloudflare/cfssl) binary is used for generating/inspecting certificates. The executable `cfssl` must be on $PATH.
 
 ### Installation
 
+See [Foreman plugin installation](https://theforeman.org/plugins/#2.3AdvancedInstallationfromGems).
+
 ### Configuration and Usage
 
-ini file
+#### ini file
 
-CFSSL config
+Example:
 
-Foreman role
+`/etc/foreman/plugins/foreman_cfssl.yaml`:
+
+```
+:foreman_cfssl:
+  :ca: /etc/foreman/plugins/foreman_cfssl/ca.pem
+  :ca_key: /etc/foreman/plugins/foreman_cfssl/ca-key.pem
+  :config: /etc/foreman/plugins/foreman_cfssl/config.json
+  :csr_template: /etc/foreman/plugins/foreman_cfssl/csr-template.json
+  :private_key_import: false
+```
+
+#### CFSSL config
+
+More documentation can be found on CFSSL project page, but here are the two JSON files referenced mentioned above:
+
+`/etc/foreman/plugins/foreman_cfssl/config.json`:
+
+```
+{
+    "signing": {
+        "default": {
+            "expiry": "43800h"
+        },
+        "profiles": {
+            "server": {
+                "expiry": "43800h",
+                "usages": [
+                    "signing",
+                    "key encipherment",
+                    "server auth"
+                ]
+            },
+            "client": {
+                "expiry": "43800h",
+                "usages": [
+                    "signing",
+                    "key encipherment",
+                    "client auth"
+                ]
+            }
+        }
+    }
+}
+```
+
+On certificate generation page, user can select a profile, fill in "common name" and SAN list. Inputs are merged into the CSR template below and fed into cfssl command.
+
+`/etc/foreman/plugins/foreman_cfssl/csr-template.json`:
+
+```
+{
+    "key": {
+        "algo": "rsa",
+        "size": 2048
+    },
+    "names": [
+        {
+            "C": "US",
+            "ST": "MA",
+            "L": "Newton",
+            "OU": "My Corp"
+        }
+    ]
+}
+```
+
+#### Foreman role
+
+A single role "CFSSL" controls all permissions.
