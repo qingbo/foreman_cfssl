@@ -20,6 +20,14 @@ If you do want to put valuable certificate keys into the system, consider:
 
 See [Foreman plugin installation](https://theforeman.org/plugins/#2.3AdvancedInstallationfromGems).
 
+The plugin needs a "certs" table, which can be created by running:
+
+```
+foreman-rake db:migrate
+```
+
+or by running [the SQL](https://github.com/qingbo/foreman_cfssl/blob/master/db/certs.sql).
+
 ### Configuration and Usage
 
 #### ini file
